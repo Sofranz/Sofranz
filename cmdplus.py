@@ -1,22 +1,74 @@
+import webbrowser
+import math
 import os
 import time
-import math
 
-os.system('color a')
+os.system("color a")
 
 while True:
-    command = input ('>>>:')
+    command = input(">>>:")
     if command == "exit":
-        print ("Disconnecting ...")
+        print("Disconnecting ...")
         time.sleep(0.3)
         quit()
     elif command == "disconnect":
-        print ("Disconnecting ...")
+        print("Disconnecting ...")
         time.sleep(0.3)
         quit()
+    elif command == "cls":
+        for i in range(0, 3):
+            print("Cleaning...\\")
+            time.sleep(0.08)
+            os.system(command)
+            print("Cleaning.../")
+            time.sleep(0.08)
+            os.system(command)
+    elif command == ("deez nuts"):
+        webbrowser.open_new_tab("https://youtu.be/Lx0PrXACHRk")
+        print("Processing browser request...\n")
+    elif command == "easter egg":
+        print("yes there is an easter egg \n")
+    elif command == "face":
+        webbrowser.open_new_tab("https://www.thispersondoesnotexist.com")
+        print("")
+    elif command == "this and that":
+        print ("that and this \n")
+    elif command == 'raise':
+        print ('''
+                                                                                        
+                                                                                
+                                                                                
+                                                                                
+      @@/,&@@@@@@@@@@@@@@@*              &@@     *@@@@@@@@@@@@@@@@,    @@@      
+    /@@@*           @@   /@*(@@@         &@@@@@%,          .@#   @@,%@@@@@&     
+    @@@             *@@@@@@              &@@                @@@@@@*      @@(    
+    @@,                                  (@@@@@                          #@@    
+   #@@                                        @@@                         @@.   
+   &@@                                        ,@@                         @@*   
+   /@@                                        %@@                        .@@.   
+    @@#                               @      @@@,                        &@@    
+    /@@                                ,@@@@@@                           @@     
+     %@@                                                                @@/     
+      /@@              *@@@@@@&#*,     ,*#&@@@@@&.                     @@.      
+                                  ,,,,.                                         
+                                                                                
+                                                                                
+
+        ''')
+    elif command == 'decode':
+        availableFiles = os.system('dir')
+        availableFiles = availableFiles.strip(*.png)
+        filename = input('what is the file name? :')
+        
+
+        with open(filename, 'rb') as f:
+            text = f.read()
+            print (text)
+            
+        
     elif command == "pog":
         # Esteban Garcia-Gurtubay Jan 2014
-        
+
         def render_frame(A, B):
 
             # Precompute sines and cosines of A and B
@@ -29,12 +81,12 @@ while True:
             zbuffer = []
 
             for i in range(screen_height + 1):
-                char_output.append([' '] * (screen_width + 0))
+                char_output.append([" "] * (screen_width + 0))
                 zbuffer.append([0] * (screen_width + 0))
 
             # theta goes around the cross-sectional circle of a torus
             theta = 0
-            while (theta < 2* math.pi):
+            while theta < 2 * math.pi:
                 theta += theta_spacing
 
                 # Precompute sines and cosines of theta
@@ -43,7 +95,7 @@ while True:
 
                 # phi goes around the center of revolution of a torus
                 phi = 0
-                while (phi < 2*math.pi):
+                while phi < 2 * math.pi:
                     phi += phi_spacing
 
                     # Precompute sines and cosines of phi
@@ -52,22 +104,33 @@ while True:
 
                     # the x,y coordinate of the circle,
                     # before revolving (factored out of the above equations)
-                    circlex = R2 + R1*costheta
-                    circley = R1*sintheta
+                    circlex = R2 + R1 * costheta
+                    circley = R1 * sintheta
 
                     # final 3D (x,y,z) coordinate after rotations, directly from our math above
-                    x = circlex*(cosB*cosphi + sinA*sinB*sinphi) - circley*cosA*sinB
-                    y = circlex*(sinB*cosphi - sinA*cosB*sinphi) + circley*cosA*cosB
-                    z = K2 + cosA*circlex*sinphi + circley*sinA
-                    ooz = 1/z
+                    x = (
+                        circlex * (cosB * cosphi + sinA * sinB * sinphi)
+                        - circley * cosA * sinB
+                    )
+                    y = (
+                        circlex * (sinB * cosphi - sinA * cosB * sinphi)
+                        + circley * cosA * cosB
+                    )
+                    z = K2 + cosA * circlex * sinphi + circley * sinA
+                    ooz = 1 / z
 
                     # x and y projection. y is negated here, because y goes up in
                     # 3D space but down on 2D displays.
-                    xp = int(screen_width/2 + K1*ooz*x)
-                    yp = int(screen_height/2 - K1*ooz*y)
+                    xp = int(screen_width / 2 + K1 * ooz * x)
+                    yp = int(screen_height / 2 - K1 * ooz * y)
 
                     # Calculate luminance
-                    L = cosphi*costheta*sinB - cosA*costheta*sinphi - sinA*sintheta + cosB*(cosA*sintheta - costheta*sinA*sinphi)
+                    L = (
+                        cosphi * costheta * sinB
+                        - cosA * costheta * sinphi
+                        - sinA * sintheta
+                        + cosB * (cosA * sintheta - costheta * sinA * sinphi)
+                    )
 
                     # L ranges from -sqrt(2) to +sqrt(2).  If it's < 0, the surface is
                     # pointing away from us, so we won't bother trying to plot it.
@@ -76,20 +139,21 @@ while True:
                         # the viewer than what's already plotted.
                         if ooz > zbuffer[xp][yp]:
                             zbuffer[xp][yp] = ooz
-                            luminance_index = L*8   # this brings L into the range 0..11 (8*sqrt(2) = 11.3)
+                            luminance_index = (
+                                L * 8
+                            )  # this brings L into the range 0..11 (8*sqrt(2) = 11.3)
 
                             # Now we lookup the character corresponding
                             # to the luminance and plot it in our output
-                            char_output[xp][yp] = '.,-~:;=!*#$@'[int(luminance_index)]
+                            char_output[xp][yp] = ".,-~:;=!*#$@"[int(luminance_index)]
 
             # Now, dump char_output to the screen.
             # Bring cursor to "home" location, in just about any currently-used terminal emulation mode
-            print('\x1b[H')
+            print("\x1b[H")
             for i in range(screen_height):
                 for j in range(screen_width):
-                    print(char_output[i][j], end='')
+                    print(char_output[i][j], end="")
                 print()
-
 
         theta_spacing = 0.07
         phi_spacing = 0.02
@@ -108,9 +172,9 @@ while True:
         screen_width = 35
         screen_height = 35
 
-        K1 = screen_width*K2*3/(8*(R1+R2))
+        K1 = screen_width * K2 * 3 / (8 * (R1 + R2))
 
-        print('\x1b[2J')
+        print("\x1b[2J")
         A = 1.0
         B = 1.0
 
